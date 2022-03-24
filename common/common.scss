@@ -1,0 +1,102 @@
+//techcommunity-badges-widget - common.scss
+
+/*CSS to Display badges and banner header text on the home page banner [Added by: Ajroddin; 26-11-2021]*/
+html {
+    &:not(.anon) {
+        #main .custom-banner-outlet.banner {
+            .banner-box {
+                background: none !important;
+                /*Style for the custom sag banner header text */
+                .sag-section-header {
+                    padding-bottom: 35px !important;
+                    margin-top: 20px;
+                    font-size: 3.2em;
+                    font-weight: 600;
+                    color: var(--secondary);
+                    @include breakpoint("mobile-large"){
+                        padding-bottom: 45px !important;
+                        margin-top: 0px;
+                        font-size: 2.5em !important;                    
+                    }
+                }
+                /*Hide the Banner header text of the Versetile banner for the logged-in users */
+                .section-header {
+                    display: none !important;                               
+                }
+                //Set badges on the home page banner [Added By: Ajroddin; Date: 24-11-2021]
+                #banner-content_wrap {
+                    display: grid;
+                    .discourse-home-page-badges {
+                        grid-column-start: 2;
+                        grid-row: 1 / 3;
+                        display: grid;
+                        justify-content: end;
+                        grid-template-columns:75px 75px 75px 75px;
+                        height: 1px;
+                        row-gap:12px;
+                        column-gap: 12px;
+                        .badge-link {
+                            position: relative;
+                            display: inline-block;
+                            text-align: center;
+                            margin: auto;
+                            padding: 4px 12px;
+                            border-radius: 50px;
+                            &.badge-type-gold {
+                                    background-color: var(--gold) !important;
+                                }
+                                &.badge-type-silver {
+                                    background-color: #c0c0c0 !important;
+                                }
+                                &.badge-type-bronze {
+                                    background-color: var(--bronze) !important;
+                                }
+                            .badge-icon {
+                                font-size: 3em;
+                                color: #2b2855;
+                                
+                                svg {
+                                    vertical-align: -0.16em;
+                                }
+                            }
+                            
+                            //Style for the tooltip of the badges
+                            .badge-tooltip-text {
+                                display: none;
+                                width: 170px;
+                                background-color: var(--secondary);
+                                color: #000000;
+                                text-align: left;
+                                box-shadow: shadow("card");
+                                padding: 5px 10px;
+                                /* Position the tooltip */
+                                position: absolute;
+                                z-index: 1;
+                                top: 100%;
+                                left: 50%;
+                                margin-left: -60px;
+                                .badge-name{
+                                    font-size: var(--font-up-2);
+                                    font-weight: bold;
+                                }
+                                .badge-description {
+                                    font-size: 15px;
+                                }
+                              }
+                        }
+                        .badge-link:hover .badge-tooltip-text{
+                            display: inline-block;
+                        }
+                        @include breakpoint("extra-large") {
+                            display: none !important;
+                        }
+                    }
+                    @include breakpoint("extra-large"){
+                        display: block !important;                        
+                    }
+                    
+                }
+            }
+        }
+    }
+}
