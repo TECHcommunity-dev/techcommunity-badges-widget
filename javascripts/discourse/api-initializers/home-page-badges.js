@@ -39,11 +39,11 @@ export default apiInitializer("0.11.1", (api) => {
                             return;
                         }
                         //Split the badges Ids and convert string array to int array 
-                        const badgesIdSplit = settings. allowed_badges_id.split(',');
+                        const badgesIdSplit = settings.allowed_badges_id.split(',');
                         var includeBadges = badgesIdSplit.map(Number);
                         //Filter allowed badges from all badges 
                         filteredBadges = allBadges.filter((badge) => {
-                            return includeBadges.indexOf(badge.id) > -1;
+                            return includeBadges.indexOf(badge.id) > -1 && badge.enabled;
                         });
                         //Get user Earned badges                       
                         UserBadge.findByUsername(userName).then(
@@ -124,6 +124,10 @@ export default apiInitializer("0.11.1", (api) => {
         },
         //Generate the virtual-dom for display badges on the home page banner.
         html(attrs) {
+            const mobileView = this.site.mobileView;
+            if(mobileView) {
+                return;
+            }
             const result = [];
             //Declearing badge types with there ids.
             const BADGE_TYPE = {
